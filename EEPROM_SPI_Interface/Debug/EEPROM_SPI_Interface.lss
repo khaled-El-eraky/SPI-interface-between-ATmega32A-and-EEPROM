@@ -1,0 +1,1001 @@
+
+EEPROM_SPI_Interface.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000050e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         000000f8  00800060  0000050e  000005a2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000009  00800158  00800158  0000069a  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000069a  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000130  00000000  00000000  000006ca  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000014b8  00000000  00000000  000007fa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000075b  00000000  00000000  00001cb2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000005d3  00000000  00000000  0000240d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000024c  00000000  00000000  000029e0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000064f  00000000  00000000  00002c2c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000006bf  00000000  00000000  0000327b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000d0  00000000  00000000  0000393a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 a9 00 	jmp	0x152	; 0x152 <__vector_12>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	11 e0       	ldi	r17, 0x01	; 1
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee e0       	ldi	r30, 0x0E	; 14
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a8 35       	cpi	r26, 0x58	; 88
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	21 e0       	ldi	r18, 0x01	; 1
+  78:	a8 e5       	ldi	r26, 0x58	; 88
+  7a:	b1 e0       	ldi	r27, 0x01	; 1
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a1 36       	cpi	r26, 0x61	; 97
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 80 02 	call	0x500	; 0x500 <main>
+  8a:	0c 94 85 02 	jmp	0x50a	; 0x50a <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <DIO_pinConfigure>:
+ */ 
+
+#include "DIO.h"
+
+void	DIO_pinConfigure(DIO_Struct * Dio, pinNumber pinNum, pinMode Mode)
+{
+  92:	fc 01       	movw	r30, r24
+	switch(Mode)
+  94:	41 30       	cpi	r20, 0x01	; 1
+  96:	b1 f0       	breq	.+44     	; 0xc4 <DIO_pinConfigure+0x32>
+  98:	18 f0       	brcs	.+6      	; 0xa0 <DIO_pinConfigure+0xe>
+  9a:	42 30       	cpi	r20, 0x02	; 2
+  9c:	29 f1       	breq	.+74     	; 0xe8 <DIO_pinConfigure+0x56>
+  9e:	08 95       	ret
+	{
+		case INPUT_FLOAT:
+		CLEARBIT(Dio->ddr.allRegister,pinNum);
+  a0:	21 81       	ldd	r18, Z+1	; 0x01
+  a2:	81 e0       	ldi	r24, 0x01	; 1
+  a4:	90 e0       	ldi	r25, 0x00	; 0
+  a6:	ac 01       	movw	r20, r24
+  a8:	02 c0       	rjmp	.+4      	; 0xae <DIO_pinConfigure+0x1c>
+  aa:	44 0f       	add	r20, r20
+  ac:	55 1f       	adc	r21, r21
+  ae:	6a 95       	dec	r22
+  b0:	e2 f7       	brpl	.-8      	; 0xaa <DIO_pinConfigure+0x18>
+  b2:	ba 01       	movw	r22, r20
+  b4:	60 95       	com	r22
+  b6:	86 2f       	mov	r24, r22
+  b8:	82 23       	and	r24, r18
+  ba:	81 83       	std	Z+1, r24	; 0x01
+		CLEARBIT(Dio->port.allRegister,pinNum);
+  bc:	82 81       	ldd	r24, Z+2	; 0x02
+  be:	68 23       	and	r22, r24
+  c0:	62 83       	std	Z+2, r22	; 0x02
+		break;
+  c2:	08 95       	ret
+		case INPUT_PULLUP:
+		CLEARBIT(Dio->ddr.allRegister,pinNum);
+  c4:	21 81       	ldd	r18, Z+1	; 0x01
+  c6:	81 e0       	ldi	r24, 0x01	; 1
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	ac 01       	movw	r20, r24
+  cc:	02 c0       	rjmp	.+4      	; 0xd2 <DIO_pinConfigure+0x40>
+  ce:	44 0f       	add	r20, r20
+  d0:	55 1f       	adc	r21, r21
+  d2:	6a 95       	dec	r22
+  d4:	e2 f7       	brpl	.-8      	; 0xce <DIO_pinConfigure+0x3c>
+  d6:	ba 01       	movw	r22, r20
+  d8:	84 2f       	mov	r24, r20
+  da:	80 95       	com	r24
+  dc:	82 23       	and	r24, r18
+  de:	81 83       	std	Z+1, r24	; 0x01
+		SETBIT(Dio->port.allRegister,pinNum);
+  e0:	82 81       	ldd	r24, Z+2	; 0x02
+  e2:	68 2b       	or	r22, r24
+  e4:	62 83       	std	Z+2, r22	; 0x02
+		break;
+  e6:	08 95       	ret
+		case OUTPUT:
+		SETBIT(Dio->ddr.allRegister,pinNum);
+  e8:	21 81       	ldd	r18, Z+1	; 0x01
+  ea:	81 e0       	ldi	r24, 0x01	; 1
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	ac 01       	movw	r20, r24
+  f0:	02 c0       	rjmp	.+4      	; 0xf6 <DIO_pinConfigure+0x64>
+  f2:	44 0f       	add	r20, r20
+  f4:	55 1f       	adc	r21, r21
+  f6:	6a 95       	dec	r22
+  f8:	e2 f7       	brpl	.-8      	; 0xf2 <DIO_pinConfigure+0x60>
+  fa:	ba 01       	movw	r22, r20
+  fc:	82 2f       	mov	r24, r18
+  fe:	84 2b       	or	r24, r20
+ 100:	81 83       	std	Z+1, r24	; 0x01
+		CLEARBIT(Dio->port.allRegister,pinNum);
+ 102:	82 81       	ldd	r24, Z+2	; 0x02
+ 104:	60 95       	com	r22
+ 106:	68 23       	and	r22, r24
+ 108:	62 83       	std	Z+2, r22	; 0x02
+ 10a:	08 95       	ret
+
+0000010c <DIO_pinWrite>:
+	}
+}
+
+void	DIO_pinWrite(DIO_Struct * Dio, pinNumber pinNum, digitalState State)
+{
+	switch(State)
+ 10c:	44 23       	and	r20, r20
+ 10e:	89 f0       	breq	.+34     	; 0x132 <DIO_pinWrite+0x26>
+ 110:	41 30       	cpi	r20, 0x01	; 1
+ 112:	f1 f4       	brne	.+60     	; 0x150 <DIO_pinWrite+0x44>
+	{
+		case HIGH:
+		SETBIT(Dio->port.allRegister,pinNum);
+ 114:	fc 01       	movw	r30, r24
+ 116:	42 81       	ldd	r20, Z+2	; 0x02
+ 118:	21 e0       	ldi	r18, 0x01	; 1
+ 11a:	30 e0       	ldi	r19, 0x00	; 0
+ 11c:	f9 01       	movw	r30, r18
+ 11e:	02 c0       	rjmp	.+4      	; 0x124 <DIO_pinWrite+0x18>
+ 120:	ee 0f       	add	r30, r30
+ 122:	ff 1f       	adc	r31, r31
+ 124:	6a 95       	dec	r22
+ 126:	e2 f7       	brpl	.-8      	; 0x120 <DIO_pinWrite+0x14>
+ 128:	bf 01       	movw	r22, r30
+ 12a:	64 2b       	or	r22, r20
+ 12c:	fc 01       	movw	r30, r24
+ 12e:	62 83       	std	Z+2, r22	; 0x02
+		break;
+ 130:	08 95       	ret
+		case LOW:
+		CLEARBIT(Dio->port.allRegister,pinNum);
+ 132:	fc 01       	movw	r30, r24
+ 134:	42 81       	ldd	r20, Z+2	; 0x02
+ 136:	21 e0       	ldi	r18, 0x01	; 1
+ 138:	30 e0       	ldi	r19, 0x00	; 0
+ 13a:	f9 01       	movw	r30, r18
+ 13c:	02 c0       	rjmp	.+4      	; 0x142 <DIO_pinWrite+0x36>
+ 13e:	ee 0f       	add	r30, r30
+ 140:	ff 1f       	adc	r31, r31
+ 142:	6a 95       	dec	r22
+ 144:	e2 f7       	brpl	.-8      	; 0x13e <DIO_pinWrite+0x32>
+ 146:	bf 01       	movw	r22, r30
+ 148:	60 95       	com	r22
+ 14a:	64 23       	and	r22, r20
+ 14c:	fc 01       	movw	r30, r24
+ 14e:	62 83       	std	Z+2, r22	; 0x02
+ 150:	08 95       	ret
+
+00000152 <__vector_12>:
+
+#define NULL_Ptr	 ((void*)0x00)
+
+
+ISR(SPI_STC_vector)
+{
+ 152:	1f 92       	push	r1
+ 154:	0f 92       	push	r0
+ 156:	0f b6       	in	r0, 0x3f	; 63
+ 158:	0f 92       	push	r0
+ 15a:	11 24       	eor	r1, r1
+ 15c:	2f 93       	push	r18
+ 15e:	3f 93       	push	r19
+ 160:	4f 93       	push	r20
+ 162:	5f 93       	push	r21
+ 164:	6f 93       	push	r22
+ 166:	7f 93       	push	r23
+ 168:	8f 93       	push	r24
+ 16a:	9f 93       	push	r25
+ 16c:	af 93       	push	r26
+ 16e:	bf 93       	push	r27
+ 170:	ef 93       	push	r30
+ 172:	ff 93       	push	r31
+	if (SPI0.SPI_InterruptCall != NULL_Ptr)
+ 174:	e0 91 5d 01 	lds	r30, 0x015D
+ 178:	f0 91 5e 01 	lds	r31, 0x015E
+ 17c:	30 97       	sbiw	r30, 0x00	; 0
+ 17e:	09 f0       	breq	.+2      	; 0x182 <__vector_12+0x30>
+	{
+		SPI0.SPI_InterruptCall();
+ 180:	09 95       	icall
+	}
+}
+ 182:	ff 91       	pop	r31
+ 184:	ef 91       	pop	r30
+ 186:	bf 91       	pop	r27
+ 188:	af 91       	pop	r26
+ 18a:	9f 91       	pop	r25
+ 18c:	8f 91       	pop	r24
+ 18e:	7f 91       	pop	r23
+ 190:	6f 91       	pop	r22
+ 192:	5f 91       	pop	r21
+ 194:	4f 91       	pop	r20
+ 196:	3f 91       	pop	r19
+ 198:	2f 91       	pop	r18
+ 19a:	0f 90       	pop	r0
+ 19c:	0f be       	out	0x3f, r0	; 63
+ 19e:	0f 90       	pop	r0
+ 1a0:	1f 90       	pop	r1
+ 1a2:	18 95       	reti
+
+000001a4 <SPI_Init>:
+SPI_ConfigStruct SPI0 = {.SPI_InterruptCall = NULL_Ptr};
+
+void SPI_Init(void)
+{
+	/* Clear the two registers SPCR AND SPSR */
+	SPCR->allRegister = LOW;
+ 1a4:	10 92 0d 00 	sts	0x000D, r1
+	SPSR->allRegister = LOW;
+ 1a8:	10 92 0e 00 	sts	0x000E, r1
+	
+	switch(SPI0.Control)
+ 1ac:	80 91 58 01 	lds	r24, 0x0158
+ 1b0:	81 30       	cpi	r24, 0x01	; 1
+ 1b2:	09 f0       	breq	.+2      	; 0x1b6 <SPI_Init+0x12>
+ 1b4:	a3 c0       	rjmp	.+326    	; 0x2fc <SPI_Init+0x158>
+	{
+		case SPI_Disable:
+		/* DO NOTHING */
+		break;
+		case SPI_Enable:
+				switch(SPI0.Mode)
+ 1b6:	80 91 59 01 	lds	r24, 0x0159
+ 1ba:	88 23       	and	r24, r24
+ 1bc:	d1 f0       	breq	.+52     	; 0x1f2 <SPI_Init+0x4e>
+ 1be:	81 30       	cpi	r24, 0x01	; 1
+ 1c0:	f1 f4       	brne	.+60     	; 0x1fe <SPI_Init+0x5a>
+				{
+					case SPI_MASTER:
+					/* Select Master by setting the MSTR bit */
+					SPCR->bits.b4 = HIGH;
+ 1c2:	ed e0       	ldi	r30, 0x0D	; 13
+ 1c4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c6:	80 81       	ld	r24, Z
+ 1c8:	80 61       	ori	r24, 0x10	; 16
+ 1ca:	80 83       	st	Z, r24
+					/* Config MOSI, SCK, SS as OUTPUT */
+					DIO_pinConfigure(DIOB,PIN5,OUTPUT);
+ 1cc:	42 e0       	ldi	r20, 0x02	; 2
+ 1ce:	65 e0       	ldi	r22, 0x05	; 5
+ 1d0:	86 e3       	ldi	r24, 0x36	; 54
+ 1d2:	90 e0       	ldi	r25, 0x00	; 0
+ 1d4:	0e 94 49 00 	call	0x92	; 0x92 <DIO_pinConfigure>
+					DIO_pinConfigure(DIOB,PIN7,OUTPUT);
+ 1d8:	42 e0       	ldi	r20, 0x02	; 2
+ 1da:	67 e0       	ldi	r22, 0x07	; 7
+ 1dc:	86 e3       	ldi	r24, 0x36	; 54
+ 1de:	90 e0       	ldi	r25, 0x00	; 0
+ 1e0:	0e 94 49 00 	call	0x92	; 0x92 <DIO_pinConfigure>
+					DIO_pinConfigure(DIOB,PIN4,OUTPUT);
+ 1e4:	42 e0       	ldi	r20, 0x02	; 2
+ 1e6:	64 e0       	ldi	r22, 0x04	; 4
+ 1e8:	86 e3       	ldi	r24, 0x36	; 54
+ 1ea:	90 e0       	ldi	r25, 0x00	; 0
+ 1ec:	0e 94 49 00 	call	0x92	; 0x92 <DIO_pinConfigure>
+					//PORTB |= (1<<PB4) | (1<<5);
+					break;
+ 1f0:	06 c0       	rjmp	.+12     	; 0x1fe <SPI_Init+0x5a>
+					case SPI_SLAVE:
+					/* Config MISO as OUTPUT */
+					DIO_pinConfigure(DIOB,PIN6,OUTPUT);
+ 1f2:	42 e0       	ldi	r20, 0x02	; 2
+ 1f4:	66 e0       	ldi	r22, 0x06	; 6
+ 1f6:	86 e3       	ldi	r24, 0x36	; 54
+ 1f8:	90 e0       	ldi	r25, 0x00	; 0
+ 1fa:	0e 94 49 00 	call	0x92	; 0x92 <DIO_pinConfigure>
+					break;
+					default:
+					break;
+				}
+				switch(SPI0.DataOrder)
+ 1fe:	80 91 5b 01 	lds	r24, 0x015B
+ 202:	81 30       	cpi	r24, 0x01	; 1
+ 204:	29 f4       	brne	.+10     	; 0x210 <SPI_Init+0x6c>
+				{
+					case SPI_LSB:
+					SPCR->bits.b5 = HIGH;
+ 206:	ed e0       	ldi	r30, 0x0D	; 13
+ 208:	f0 e0       	ldi	r31, 0x00	; 0
+ 20a:	80 81       	ld	r24, Z
+ 20c:	80 62       	ori	r24, 0x20	; 32
+ 20e:	80 83       	st	Z, r24
+					case SPI_MSB:
+					break;
+					default:
+					break;
+				}
+				switch(SPI0.InterruptState)
+ 210:	80 91 5c 01 	lds	r24, 0x015C
+ 214:	81 30       	cpi	r24, 0x01	; 1
+ 216:	29 f4       	brne	.+10     	; 0x222 <SPI_Init+0x7e>
+				{
+					case SPI_InterruptDisable:
+					break;
+					case SPI_InterruptEnable:
+					SPCR->bits.b7 = HIGH;
+ 218:	ed e0       	ldi	r30, 0x0D	; 13
+ 21a:	f0 e0       	ldi	r31, 0x00	; 0
+ 21c:	80 81       	ld	r24, Z
+ 21e:	80 68       	ori	r24, 0x80	; 128
+ 220:	80 83       	st	Z, r24
+					break;
+					default:
+					break;
+				}
+				switch(SPI0.ClockMode)
+ 222:	80 91 5a 01 	lds	r24, 0x015A
+ 226:	82 30       	cpi	r24, 0x02	; 2
+ 228:	51 f0       	breq	.+20     	; 0x23e <SPI_Init+0x9a>
+ 22a:	83 30       	cpi	r24, 0x03	; 3
+ 22c:	a1 f0       	breq	.+40     	; 0x256 <SPI_Init+0xb2>
+ 22e:	81 30       	cpi	r24, 0x01	; 1
+ 230:	01 f5       	brne	.+64     	; 0x272 <SPI_Init+0xce>
+				{
+					case SPI_CLKMode0:
+					break;
+					case SPI_CLKMode1:
+					SPCR->bits.b2 = HIGH;
+ 232:	ed e0       	ldi	r30, 0x0D	; 13
+ 234:	f0 e0       	ldi	r31, 0x00	; 0
+ 236:	80 81       	ld	r24, Z
+ 238:	84 60       	ori	r24, 0x04	; 4
+ 23a:	80 83       	st	Z, r24
+					break;
+ 23c:	1a c0       	rjmp	.+52     	; 0x272 <SPI_Init+0xce>
+					case SPI_CLKMode2:
+					SPCR->bits.b3 = HIGH;
+ 23e:	ed e0       	ldi	r30, 0x0D	; 13
+ 240:	f0 e0       	ldi	r31, 0x00	; 0
+ 242:	80 81       	ld	r24, Z
+ 244:	88 60       	ori	r24, 0x08	; 8
+ 246:	80 83       	st	Z, r24
+					/* when using SPI Mode 3 or Mode 2 (CLK IDLE STATE must = HIGH)	*/
+					DIO_pinWrite(DIOB , PIN7 , HIGH);
+ 248:	41 e0       	ldi	r20, 0x01	; 1
+ 24a:	67 e0       	ldi	r22, 0x07	; 7
+ 24c:	86 e3       	ldi	r24, 0x36	; 54
+ 24e:	90 e0       	ldi	r25, 0x00	; 0
+ 250:	0e 94 86 00 	call	0x10c	; 0x10c <DIO_pinWrite>
+					break;
+ 254:	0e c0       	rjmp	.+28     	; 0x272 <SPI_Init+0xce>
+					case SPI_CLKMode3:
+					SPCR->bits.b2 = HIGH;
+ 256:	ed e0       	ldi	r30, 0x0D	; 13
+ 258:	f0 e0       	ldi	r31, 0x00	; 0
+ 25a:	80 81       	ld	r24, Z
+ 25c:	84 60       	ori	r24, 0x04	; 4
+ 25e:	80 83       	st	Z, r24
+					SPCR->bits.b3 = HIGH;
+ 260:	80 81       	ld	r24, Z
+ 262:	88 60       	ori	r24, 0x08	; 8
+ 264:	80 83       	st	Z, r24
+					DIO_pinWrite(DIOB , PIN7 , HIGH);
+ 266:	41 e0       	ldi	r20, 0x01	; 1
+ 268:	67 e0       	ldi	r22, 0x07	; 7
+ 26a:	86 e3       	ldi	r24, 0x36	; 54
+ 26c:	90 e0       	ldi	r25, 0x00	; 0
+ 26e:	0e 94 86 00 	call	0x10c	; 0x10c <DIO_pinWrite>
+					break;
+					default:
+					break;
+				}
+				switch(SPI0.Freq)
+ 272:	80 91 5f 01 	lds	r24, 0x015F
+ 276:	83 30       	cpi	r24, 0x03	; 3
+ 278:	e9 f0       	breq	.+58     	; 0x2b4 <SPI_Init+0x110>
+ 27a:	28 f4       	brcc	.+10     	; 0x286 <SPI_Init+0xe2>
+ 27c:	88 23       	and	r24, r24
+ 27e:	49 f0       	breq	.+18     	; 0x292 <SPI_Init+0xee>
+ 280:	82 30       	cpi	r24, 0x02	; 2
+ 282:	69 f0       	breq	.+26     	; 0x29e <SPI_Init+0xfa>
+ 284:	36 c0       	rjmp	.+108    	; 0x2f2 <SPI_Init+0x14e>
+ 286:	85 30       	cpi	r24, 0x05	; 5
+ 288:	31 f1       	breq	.+76     	; 0x2d6 <SPI_Init+0x132>
+ 28a:	d0 f0       	brcs	.+52     	; 0x2c0 <SPI_Init+0x11c>
+ 28c:	86 30       	cpi	r24, 0x06	; 6
+ 28e:	49 f1       	breq	.+82     	; 0x2e2 <SPI_Init+0x13e>
+ 290:	30 c0       	rjmp	.+96     	; 0x2f2 <SPI_Init+0x14e>
+				{
+					case SPI_FCPU_BY_2:
+					SPSR->bits.b0 = HIGH;
+ 292:	ee e0       	ldi	r30, 0x0E	; 14
+ 294:	f0 e0       	ldi	r31, 0x00	; 0
+ 296:	80 81       	ld	r24, Z
+ 298:	81 60       	ori	r24, 0x01	; 1
+ 29a:	80 83       	st	Z, r24
+					break;
+ 29c:	2a c0       	rjmp	.+84     	; 0x2f2 <SPI_Init+0x14e>
+					case SPI_FCPU_BY_4:
+					break;
+					case SPI_FCPU_BY_8:
+					SPSR->bits.b0 = HIGH;
+ 29e:	ee e0       	ldi	r30, 0x0E	; 14
+ 2a0:	f0 e0       	ldi	r31, 0x00	; 0
+ 2a2:	80 81       	ld	r24, Z
+ 2a4:	81 60       	ori	r24, 0x01	; 1
+ 2a6:	80 83       	st	Z, r24
+					SPCR->bits.b0 = HIGH;
+ 2a8:	ed e0       	ldi	r30, 0x0D	; 13
+ 2aa:	f0 e0       	ldi	r31, 0x00	; 0
+ 2ac:	80 81       	ld	r24, Z
+ 2ae:	81 60       	ori	r24, 0x01	; 1
+ 2b0:	80 83       	st	Z, r24
+					break;
+ 2b2:	1f c0       	rjmp	.+62     	; 0x2f2 <SPI_Init+0x14e>
+					case SPI_FCPU_BY_16:
+					SPCR->bits.b0 = HIGH;
+ 2b4:	ed e0       	ldi	r30, 0x0D	; 13
+ 2b6:	f0 e0       	ldi	r31, 0x00	; 0
+ 2b8:	80 81       	ld	r24, Z
+ 2ba:	81 60       	ori	r24, 0x01	; 1
+ 2bc:	80 83       	st	Z, r24
+					break;
+ 2be:	19 c0       	rjmp	.+50     	; 0x2f2 <SPI_Init+0x14e>
+					case SPI_FCPU_BY_32:
+					SPSR->bits.b0 = HIGH;
+ 2c0:	ee e0       	ldi	r30, 0x0E	; 14
+ 2c2:	f0 e0       	ldi	r31, 0x00	; 0
+ 2c4:	80 81       	ld	r24, Z
+ 2c6:	81 60       	ori	r24, 0x01	; 1
+ 2c8:	80 83       	st	Z, r24
+					SPCR->bits.b1 = HIGH;
+ 2ca:	ed e0       	ldi	r30, 0x0D	; 13
+ 2cc:	f0 e0       	ldi	r31, 0x00	; 0
+ 2ce:	80 81       	ld	r24, Z
+ 2d0:	82 60       	ori	r24, 0x02	; 2
+ 2d2:	80 83       	st	Z, r24
+					break;
+ 2d4:	0e c0       	rjmp	.+28     	; 0x2f2 <SPI_Init+0x14e>
+					case SPI_FCPU_BY_64:
+					SPCR->bits.b1 = HIGH;
+ 2d6:	ed e0       	ldi	r30, 0x0D	; 13
+ 2d8:	f0 e0       	ldi	r31, 0x00	; 0
+ 2da:	80 81       	ld	r24, Z
+ 2dc:	82 60       	ori	r24, 0x02	; 2
+ 2de:	80 83       	st	Z, r24
+					break;
+ 2e0:	08 c0       	rjmp	.+16     	; 0x2f2 <SPI_Init+0x14e>
+					case SPI_FCPU_BY_128:
+					SPCR->bits.b0 = HIGH;
+ 2e2:	ed e0       	ldi	r30, 0x0D	; 13
+ 2e4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2e6:	80 81       	ld	r24, Z
+ 2e8:	81 60       	ori	r24, 0x01	; 1
+ 2ea:	80 83       	st	Z, r24
+					SPCR->bits.b1 = HIGH;
+ 2ec:	80 81       	ld	r24, Z
+ 2ee:	82 60       	ori	r24, 0x02	; 2
+ 2f0:	80 83       	st	Z, r24
+					break;
+					default:
+					break;
+				}
+		/* Enable SPI Communication */
+		SPCR->bits.b6 = HIGH;
+ 2f2:	ed e0       	ldi	r30, 0x0D	; 13
+ 2f4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2f6:	80 81       	ld	r24, Z
+ 2f8:	80 64       	ori	r24, 0x40	; 64
+ 2fa:	80 83       	st	Z, r24
+ 2fc:	08 95       	ret
+
+000002fe <SPI_ReadWrite_Blocking>:
+	
+	
+	uint8_t SPI_ReadWrite_Blocking(uint8_t Data)
+	{
+		/* Transmit Data Using SPI Bus */
+		SPDR = Data;
+ 2fe:	80 93 0f 00 	sts	0x000F, r24
+		
+		/* Check if a Write Collision Error Occurred */
+		if ( (SPSR->bits.b6) != 0)
+ 302:	80 91 0e 00 	lds	r24, 0x000E
+ 306:	86 ff       	sbrs	r24, 6
+ 308:	03 c0       	rjmp	.+6      	; 0x310 <SPI_ReadWrite_Blocking+0x12>
+		{
+			SPI0.Error = SPI_WriteCollison;
+ 30a:	81 e0       	ldi	r24, 0x01	; 1
+ 30c:	80 93 60 01 	sts	0x0160, r24
+		}
+		
+		/* Block till The End of Transmision */
+		while ( (SPSR->bits.b7) == 0 ) {}
+ 310:	ee e0       	ldi	r30, 0x0E	; 14
+ 312:	f0 e0       	ldi	r31, 0x00	; 0
+ 314:	80 81       	ld	r24, Z
+ 316:	88 23       	and	r24, r24
+ 318:	ec f7       	brge	.-6      	; 0x314 <SPI_ReadWrite_Blocking+0x16>
+		
+		/* return Rx Data From SPI */
+		return SPDR;
+ 31a:	80 91 0f 00 	lds	r24, 0x000F
+	}
+ 31e:	08 95       	ret
+
+00000320 <UART_init>:
+
+
+
+void	UART_init(void)
+{
+	UBRRL = (uint8_t)(UBRR);             /*set the Baudrate in the UBRRL and UBRRH registers */
+ 320:	87 e6       	ldi	r24, 0x67	; 103
+ 322:	89 b9       	out	0x09, r24	; 9
+	UBRRH = (uint8_t)((UBRR)>>8);
+ 324:	10 bc       	out	0x20, r1	; 32
+	SETBIT(UCSRB,RXEN);					 /*Rx Enable*/    
+ 326:	54 9a       	sbi	0x0a, 4	; 10
+	SETBIT(UCSRB,TXEN);					 /*Tx Enable*/
+ 328:	53 9a       	sbi	0x0a, 3	; 10
+	SETBIT(UCSRC,URSEL);                 /*select UCSRC register*/
+ 32a:	80 b5       	in	r24, 0x20	; 32
+ 32c:	80 68       	ori	r24, 0x80	; 128
+ 32e:	80 bd       	out	0x20, r24	; 32
+	SETBIT(UCSRC,UCSZ0);                 /*set the date bit size with 8 bit*/
+ 330:	80 b5       	in	r24, 0x20	; 32
+ 332:	82 60       	ori	r24, 0x02	; 2
+ 334:	80 bd       	out	0x20, r24	; 32
+	SETBIT(UCSRC,UCSZ1);           
+ 336:	80 b5       	in	r24, 0x20	; 32
+ 338:	84 60       	ori	r24, 0x04	; 4
+ 33a:	80 bd       	out	0x20, r24	; 32
+ 33c:	08 95       	ret
+
+0000033e <UART_sendByte>:
+}
+
+void UART_sendByte(uint8_t Data)
+{
+	while((UCSRA & (1<<UDRE)) == 0)     
+ 33e:	5d 9b       	sbis	0x0b, 5	; 11
+ 340:	fe cf       	rjmp	.-4      	; 0x33e <UART_sendByte>
+	{
+		
+	}
+	UDR =(uint8_t) Data;
+ 342:	8c b9       	out	0x0c, r24	; 12
+ 344:	08 95       	ret
+
+00000346 <UART_ReadByte>:
+}
+
+uint8_t UART_ReadByte(void)
+{
+	while((UCSRA & (1<<RXC)) == 0)
+ 346:	5f 9b       	sbis	0x0b, 7	; 11
+ 348:	fe cf       	rjmp	.-4      	; 0x346 <UART_ReadByte>
+	{
+	}
+	return UDR;
+ 34a:	8c b1       	in	r24, 0x0c	; 12
+}
+ 34c:	08 95       	ret
+
+0000034e <UART_Send_string>:
+void UART_Send_string(char string[])
+{
+ 34e:	cf 93       	push	r28
+ 350:	df 93       	push	r29
+ 352:	ec 01       	movw	r28, r24
+	int i=0;
+	while ( string[i] > 0)
+ 354:	88 81       	ld	r24, Y
+ 356:	88 23       	and	r24, r24
+ 358:	31 f0       	breq	.+12     	; 0x366 <UART_Send_string+0x18>
+ 35a:	21 96       	adiw	r28, 0x01	; 1
+	UART_sendByte(string[i++]);
+ 35c:	0e 94 9f 01 	call	0x33e	; 0x33e <UART_sendByte>
+	return UDR;
+}
+void UART_Send_string(char string[])
+{
+	int i=0;
+	while ( string[i] > 0)
+ 360:	89 91       	ld	r24, Y+
+ 362:	81 11       	cpse	r24, r1
+ 364:	fb cf       	rjmp	.-10     	; 0x35c <UART_Send_string+0xe>
+	UART_sendByte(string[i++]);
+}
+ 366:	df 91       	pop	r29
+ 368:	cf 91       	pop	r28
+ 36a:	08 95       	ret
+
+0000036c <EEPROM_Init>:
+	}	
+}
+
+void EEPROM_Init(void)
+{
+	SPI0.Control = SPI_Enable;
+ 36c:	81 e0       	ldi	r24, 0x01	; 1
+ 36e:	80 93 58 01 	sts	0x0158, r24
+	SPI0.Mode = SPI_MASTER;
+ 372:	80 93 59 01 	sts	0x0159, r24
+	SPI0.ClockMode = SPI_CLKMode3;
+ 376:	83 e0       	ldi	r24, 0x03	; 3
+ 378:	80 93 5a 01 	sts	0x015A, r24
+	SPI0.DataOrder = SPI_MSB;
+ 37c:	10 92 5b 01 	sts	0x015B, r1
+	SPI0.Freq = SPI_FCPU_BY_8;
+ 380:	82 e0       	ldi	r24, 0x02	; 2
+ 382:	80 93 5f 01 	sts	0x015F, r24
+	SPI0.InterruptState = SPI_InterruptDisable;
+ 386:	10 92 5c 01 	sts	0x015C, r1
+	/* Config CS Pin  as OUTPUT */
+	DIO_pinConfigure(DIOB , PIN0 , OUTPUT);
+ 38a:	42 e0       	ldi	r20, 0x02	; 2
+ 38c:	60 e0       	ldi	r22, 0x00	; 0
+ 38e:	86 e3       	ldi	r24, 0x36	; 54
+ 390:	90 e0       	ldi	r25, 0x00	; 0
+ 392:	0e 94 49 00 	call	0x92	; 0x92 <DIO_pinConfigure>
+	//DIO_pinWrite(DIOB , PIN0 , HIGH);
+	SPI_Init();
+ 396:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <SPI_Init>
+ 39a:	08 95       	ret
+
+0000039c <EEPROM_WriteByte>:
+}
+
+void EEPROM_WriteByte(uint8_t Data , unsigned short address)
+{
+ 39c:	cf 93       	push	r28
+ 39e:	df 93       	push	r29
+ 3a0:	c8 2f       	mov	r28, r24
+ 3a2:	d6 2f       	mov	r29, r22
+{
+	switch(State)
+	{
+		case LOW:
+		/*  SET the CS by clearing the SS pin on ATmege32A >> PB0  */
+		DIO_pinWrite(DIOB , PIN0 , LOW);
+ 3a4:	40 e0       	ldi	r20, 0x00	; 0
+ 3a6:	60 e0       	ldi	r22, 0x00	; 0
+ 3a8:	86 e3       	ldi	r24, 0x36	; 54
+ 3aa:	90 e0       	ldi	r25, 0x00	; 0
+ 3ac:	0e 94 86 00 	call	0x10c	; 0x10c <DIO_pinWrite>
+void EEPROM_WriteByte(uint8_t Data , unsigned short address)
+{
+	/* Select EEPROM By Applying 0 to CS */
+	SPI_CS_Control(LOW);
+	/* Write Latch Enable */
+	SPI_ReadWrite_Blocking(WREN_OPCODE);
+ 3b0:	86 e0       	ldi	r24, 0x06	; 6
+ 3b2:	0e 94 7f 01 	call	0x2fe	; 0x2fe <SPI_ReadWrite_Blocking>
+		DIO_pinWrite(DIOB , PIN0 , LOW);
+
+		break;
+		case HIGH:
+		/*  Clear the CS by Setting the SS pin on ATmege32A >> PB0  */
+		DIO_pinWrite(DIOB , PIN0 , HIGH);
+ 3b6:	41 e0       	ldi	r20, 0x01	; 1
+ 3b8:	60 e0       	ldi	r22, 0x00	; 0
+ 3ba:	86 e3       	ldi	r24, 0x36	; 54
+ 3bc:	90 e0       	ldi	r25, 0x00	; 0
+ 3be:	0e 94 86 00 	call	0x10c	; 0x10c <DIO_pinWrite>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 3c2:	2f ef       	ldi	r18, 0xFF	; 255
+ 3c4:	80 e7       	ldi	r24, 0x70	; 112
+ 3c6:	92 e0       	ldi	r25, 0x02	; 2
+ 3c8:	21 50       	subi	r18, 0x01	; 1
+ 3ca:	80 40       	sbci	r24, 0x00	; 0
+ 3cc:	90 40       	sbci	r25, 0x00	; 0
+ 3ce:	e1 f7       	brne	.-8      	; 0x3c8 <EEPROM_WriteByte+0x2c>
+ 3d0:	00 c0       	rjmp	.+0      	; 0x3d2 <EEPROM_WriteByte+0x36>
+ 3d2:	00 00       	nop
+{
+	switch(State)
+	{
+		case LOW:
+		/*  SET the CS by clearing the SS pin on ATmege32A >> PB0  */
+		DIO_pinWrite(DIOB , PIN0 , LOW);
+ 3d4:	40 e0       	ldi	r20, 0x00	; 0
+ 3d6:	60 e0       	ldi	r22, 0x00	; 0
+ 3d8:	86 e3       	ldi	r24, 0x36	; 54
+ 3da:	90 e0       	ldi	r25, 0x00	; 0
+ 3dc:	0e 94 86 00 	call	0x10c	; 0x10c <DIO_pinWrite>
+	/* Apply High to CS to Make Write Latch Enable Instruction Executed*/
+	SPI_CS_Control(HIGH);
+	_delay_ms(50);
+	/* Select EEPROM By Applying 0 to CS */
+	SPI_CS_Control(LOW);
+	SPI_ReadWrite_Blocking(WRTIE_OPCODE);
+ 3e0:	82 e0       	ldi	r24, 0x02	; 2
+ 3e2:	0e 94 7f 01 	call	0x2fe	; 0x2fe <SPI_ReadWrite_Blocking>
+	SPI_ReadWrite_Blocking(address);
+ 3e6:	8d 2f       	mov	r24, r29
+ 3e8:	0e 94 7f 01 	call	0x2fe	; 0x2fe <SPI_ReadWrite_Blocking>
+	SPI_ReadWrite_Blocking(Data);
+ 3ec:	8c 2f       	mov	r24, r28
+ 3ee:	0e 94 7f 01 	call	0x2fe	; 0x2fe <SPI_ReadWrite_Blocking>
+		DIO_pinWrite(DIOB , PIN0 , LOW);
+
+		break;
+		case HIGH:
+		/*  Clear the CS by Setting the SS pin on ATmege32A >> PB0  */
+		DIO_pinWrite(DIOB , PIN0 , HIGH);
+ 3f2:	41 e0       	ldi	r20, 0x01	; 1
+ 3f4:	60 e0       	ldi	r22, 0x00	; 0
+ 3f6:	86 e3       	ldi	r24, 0x36	; 54
+ 3f8:	90 e0       	ldi	r25, 0x00	; 0
+ 3fa:	0e 94 86 00 	call	0x10c	; 0x10c <DIO_pinWrite>
+	SPI_CS_Control(LOW);
+	SPI_ReadWrite_Blocking(WRTIE_OPCODE);
+	SPI_ReadWrite_Blocking(address);
+	SPI_ReadWrite_Blocking(Data);
+	SPI_CS_Control(HIGH);
+}
+ 3fe:	df 91       	pop	r29
+ 400:	cf 91       	pop	r28
+ 402:	08 95       	ret
+
+00000404 <EEPROM_ReadByte>:
+
+uint8_t EEPROM_ReadByte(unsigned short address)
+{
+ 404:	cf 93       	push	r28
+ 406:	c8 2f       	mov	r28, r24
+{
+	switch(State)
+	{
+		case LOW:
+		/*  SET the CS by clearing the SS pin on ATmege32A >> PB0  */
+		DIO_pinWrite(DIOB , PIN0 , LOW);
+ 408:	40 e0       	ldi	r20, 0x00	; 0
+ 40a:	60 e0       	ldi	r22, 0x00	; 0
+ 40c:	86 e3       	ldi	r24, 0x36	; 54
+ 40e:	90 e0       	ldi	r25, 0x00	; 0
+ 410:	0e 94 86 00 	call	0x10c	; 0x10c <DIO_pinWrite>
+uint8_t EEPROM_ReadByte(unsigned short address)
+{
+	
+	uint8_t ReadData = 0;
+	SPI_CS_Control(LOW);
+	SPI_ReadWrite_Blocking(READ_OPCODE);
+ 414:	83 e0       	ldi	r24, 0x03	; 3
+ 416:	0e 94 7f 01 	call	0x2fe	; 0x2fe <SPI_ReadWrite_Blocking>
+	SPI_ReadWrite_Blocking(address);
+ 41a:	8c 2f       	mov	r24, r28
+ 41c:	0e 94 7f 01 	call	0x2fe	; 0x2fe <SPI_ReadWrite_Blocking>
+	ReadData = SPI_ReadWrite_Blocking(DUMMY_DATA);
+ 420:	80 e0       	ldi	r24, 0x00	; 0
+ 422:	0e 94 7f 01 	call	0x2fe	; 0x2fe <SPI_ReadWrite_Blocking>
+ 426:	c8 2f       	mov	r28, r24
+		DIO_pinWrite(DIOB , PIN0 , LOW);
+
+		break;
+		case HIGH:
+		/*  Clear the CS by Setting the SS pin on ATmege32A >> PB0  */
+		DIO_pinWrite(DIOB , PIN0 , HIGH);
+ 428:	41 e0       	ldi	r20, 0x01	; 1
+ 42a:	60 e0       	ldi	r22, 0x00	; 0
+ 42c:	86 e3       	ldi	r24, 0x36	; 54
+ 42e:	90 e0       	ldi	r25, 0x00	; 0
+ 430:	0e 94 86 00 	call	0x10c	; 0x10c <DIO_pinWrite>
+	SPI_ReadWrite_Blocking(READ_OPCODE);
+	SPI_ReadWrite_Blocking(address);
+	ReadData = SPI_ReadWrite_Blocking(DUMMY_DATA);
+	SPI_CS_Control(HIGH);
+	return ReadData;
+ 434:	8c 2f       	mov	r24, r28
+ 436:	cf 91       	pop	r28
+ 438:	08 95       	ret
+
+0000043a <DATALogger_Init>:
+#include "UART.h"
+#include <util/delay.h>
+
+void DATALogger_Init(void)
+{
+	UART_init();
+ 43a:	0e 94 90 01 	call	0x320	; 0x320 <UART_init>
+	EEPROM_Init();
+ 43e:	0e 94 b6 01 	call	0x36c	; 0x36c <EEPROM_Init>
+ 442:	08 95       	ret
+
+00000444 <DATALogger_Start>:
+}
+
+void DATALogger_Start(void)
+{
+ 444:	cf 93       	push	r28
+ 446:	df 93       	push	r29
+	uint8_t Operation = 0;
+	uint8_t Address = 0;
+	uint8_t Data = 0;
+    UART_Send_string("Please Enter W to Write Data to EEPROM or R to Read Data From EEPROM: ");
+ 448:	80 e6       	ldi	r24, 0x60	; 96
+ 44a:	90 e0       	ldi	r25, 0x00	; 0
+ 44c:	0e 94 a7 01 	call	0x34e	; 0x34e <UART_Send_string>
+	UART_sendByte('\r');
+ 450:	8d e0       	ldi	r24, 0x0D	; 13
+ 452:	0e 94 9f 01 	call	0x33e	; 0x33e <UART_sendByte>
+	Operation = UART_ReadByte();
+ 456:	0e 94 a3 01 	call	0x346	; 0x346 <UART_ReadByte>
+ 45a:	c8 2f       	mov	r28, r24
+	UART_sendByte('\r');
+ 45c:	8d e0       	ldi	r24, 0x0D	; 13
+ 45e:	0e 94 9f 01 	call	0x33e	; 0x33e <UART_sendByte>
+	switch(Operation)
+ 462:	c7 35       	cpi	r28, 0x57	; 87
+ 464:	41 f0       	breq	.+16     	; 0x476 <DATALogger_Start+0x32>
+ 466:	18 f4       	brcc	.+6      	; 0x46e <DATALogger_Start+0x2a>
+ 468:	c2 35       	cpi	r28, 0x52	; 82
+ 46a:	21 f1       	breq	.+72     	; 0x4b4 <DATALogger_Start+0x70>
+ 46c:	3f c0       	rjmp	.+126    	; 0x4ec <DATALogger_Start+0xa8>
+ 46e:	c2 37       	cpi	r28, 0x72	; 114
+ 470:	09 f1       	breq	.+66     	; 0x4b4 <DATALogger_Start+0x70>
+ 472:	c7 37       	cpi	r28, 0x77	; 119
+ 474:	d9 f5       	brne	.+118    	; 0x4ec <DATALogger_Start+0xa8>
+	{
+		case 'W':
+		case 'w':
+		UART_Send_string("Please Provide Address [0 - 127] Followed By Data[0-255] : ");
+ 476:	87 ea       	ldi	r24, 0xA7	; 167
+ 478:	90 e0       	ldi	r25, 0x00	; 0
+ 47a:	0e 94 a7 01 	call	0x34e	; 0x34e <UART_Send_string>
+		
+		
+		Address = UART_ReadByte();
+ 47e:	0e 94 a3 01 	call	0x346	; 0x346 <UART_ReadByte>
+ 482:	d8 2f       	mov	r29, r24
+		UART_sendByte('-');
+ 484:	8d e2       	ldi	r24, 0x2D	; 45
+ 486:	0e 94 9f 01 	call	0x33e	; 0x33e <UART_sendByte>
+		Data	= UART_ReadByte();
+ 48a:	0e 94 a3 01 	call	0x346	; 0x346 <UART_ReadByte>
+ 48e:	c8 2f       	mov	r28, r24
+		UART_sendByte('\r');
+ 490:	8d e0       	ldi	r24, 0x0D	; 13
+ 492:	0e 94 9f 01 	call	0x33e	; 0x33e <UART_sendByte>
+		/* Code to Convert rx String to Number */
+		Address = Address - '0';
+ 496:	d0 53       	subi	r29, 0x30	; 48
+		Data	-= '0';
+		EEPROM_WriteByte(Data,Address);
+ 498:	6d 2f       	mov	r22, r29
+ 49a:	70 e0       	ldi	r23, 0x00	; 0
+ 49c:	80 ed       	ldi	r24, 0xD0	; 208
+ 49e:	8c 0f       	add	r24, r28
+ 4a0:	0e 94 ce 01 	call	0x39c	; 0x39c <EEPROM_WriteByte>
+		UART_Send_string("Write Operation Done :: ");
+ 4a4:	83 ee       	ldi	r24, 0xE3	; 227
+ 4a6:	90 e0       	ldi	r25, 0x00	; 0
+ 4a8:	0e 94 a7 01 	call	0x34e	; 0x34e <UART_Send_string>
+		UART_sendByte('\r');
+ 4ac:	8d e0       	ldi	r24, 0x0D	; 13
+ 4ae:	0e 94 9f 01 	call	0x33e	; 0x33e <UART_sendByte>
+		break;
+ 4b2:	23 c0       	rjmp	.+70     	; 0x4fa <DATALogger_Start+0xb6>
+		case 'R':
+		case 'r':
+		UART_Send_string("Please Provide Address [0 - 127]: ");
+ 4b4:	8c ef       	ldi	r24, 0xFC	; 252
+ 4b6:	90 e0       	ldi	r25, 0x00	; 0
+ 4b8:	0e 94 a7 01 	call	0x34e	; 0x34e <UART_Send_string>
+		Address = UART_ReadByte();
+ 4bc:	0e 94 a3 01 	call	0x346	; 0x346 <UART_ReadByte>
+ 4c0:	c8 2f       	mov	r28, r24
+		UART_sendByte('\r');
+ 4c2:	8d e0       	ldi	r24, 0x0D	; 13
+ 4c4:	0e 94 9f 01 	call	0x33e	; 0x33e <UART_sendByte>
+		Address = Address - '0';
+ 4c8:	80 ed       	ldi	r24, 0xD0	; 208
+ 4ca:	8c 0f       	add	r24, r28
+		Data = EEPROM_ReadByte(Address);
+ 4cc:	90 e0       	ldi	r25, 0x00	; 0
+ 4ce:	0e 94 02 02 	call	0x404	; 0x404 <EEPROM_ReadByte>
+ 4d2:	c8 2f       	mov	r28, r24
+		
+		/* Code to Convert Number to ASCII Before Printing */
+		Data += '0';
+		UART_Send_string("Address has Data of :  ");
+ 4d4:	8f e1       	ldi	r24, 0x1F	; 31
+ 4d6:	91 e0       	ldi	r25, 0x01	; 1
+ 4d8:	0e 94 a7 01 	call	0x34e	; 0x34e <UART_Send_string>
+		UART_sendByte(Data);
+ 4dc:	80 e3       	ldi	r24, 0x30	; 48
+ 4de:	8c 0f       	add	r24, r28
+ 4e0:	0e 94 9f 01 	call	0x33e	; 0x33e <UART_sendByte>
+		UART_sendByte('\r');
+ 4e4:	8d e0       	ldi	r24, 0x0D	; 13
+ 4e6:	0e 94 9f 01 	call	0x33e	; 0x33e <UART_sendByte>
+		break;
+ 4ea:	07 c0       	rjmp	.+14     	; 0x4fa <DATALogger_Start+0xb6>
+		default:
+		UART_Send_string("Wrong Input Please Try Again ::");
+ 4ec:	87 e3       	ldi	r24, 0x37	; 55
+ 4ee:	91 e0       	ldi	r25, 0x01	; 1
+ 4f0:	0e 94 a7 01 	call	0x34e	; 0x34e <UART_Send_string>
+		UART_sendByte('\r');
+ 4f4:	8d e0       	ldi	r24, 0x0D	; 13
+ 4f6:	0e 94 9f 01 	call	0x33e	; 0x33e <UART_sendByte>
+		break;
+	}
+ 4fa:	df 91       	pop	r29
+ 4fc:	cf 91       	pop	r28
+ 4fe:	08 95       	ret
+
+00000500 <main>:
+
+
+#include "LoggingSystem.h"
+int main(void)
+{
+	DATALogger_Init();
+ 500:	0e 94 1d 02 	call	0x43a	; 0x43a <DATALogger_Init>
+	while(1)
+	{
+		DATALogger_Start();
+ 504:	0e 94 22 02 	call	0x444	; 0x444 <DATALogger_Start>
+ 508:	fd cf       	rjmp	.-6      	; 0x504 <main+0x4>
+
+0000050a <_exit>:
+ 50a:	f8 94       	cli
+
+0000050c <__stop_program>:
+ 50c:	ff cf       	rjmp	.-2      	; 0x50c <__stop_program>
